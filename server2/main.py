@@ -40,7 +40,7 @@ async def startup_event():
     check_database_exists(DB_PATH)
 
 
-@app.get("/items")
+@app.get("/items/")
 async def list_items():
     return load_database()
 
@@ -63,6 +63,16 @@ async def create_item(item: Item):
             "quantity": item_dict["quantity"]
         }
     }
+
+
+@app.get("/backup/")
+async def list_items():
+    pass
+
+
+@app.post("/backup/save/")
+async def copy_data():
+    pass
 
 
 if __name__ == "__main__":
