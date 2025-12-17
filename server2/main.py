@@ -69,12 +69,18 @@ async def create_item(item: Item):
 
 @app.get("/backup/")
 async def list_items():
-    pass
+    return load_database(BIND_PATH)
 
 
 @app.post("/backup/save/")
 async def copy_data():
-    pass
+    items = load_database(DB_PATH)
+    save_database(BIND_PATH, items)
+    items_count = len(items)
+    return {
+        "message": "Items copied successfully",
+        "items_count": items_count
+    }
 
 
 if __name__ == "__main__":
